@@ -25,8 +25,6 @@ class DiceGUI:
         self.root = customtkinter.CTk()
         self.root.geometry("640x360")
 
-        #self.thisRoll=[]
-
         self.frame=customtkinter.CTkFrame(master=self.root)
         self.frame.pack(pady=20,padx=20,fill="both", expand=False)
 
@@ -51,9 +49,6 @@ class DiceGUI:
         self.sidesLabel=customtkinter.CTkLabel(master=self.inputgrid, text="Number of Sides", font=("Roboto",24))
         self.sidesLabel.grid(row=1,column=0)
 
-        #sides=customtkinter.CTkEntry(master=inputgrid, placeholder_text="Number of Sides")
-        #sides.grid(row=1,column=1)
-
         self.sides2=customtkinter.CTkOptionMenu(master=self.inputgrid,values=['4','6','8','10','12','20','100'],font=("Roboto",24))
         self.sides2.grid(row=1,column=1)
         self.sides2.set('6')
@@ -62,11 +57,6 @@ class DiceGUI:
 
         self.button=customtkinter.CTkButton(master=self.frame, text="Roll!", command=self.rollDice, font=('Roboto',24))
         self.button.pack(pady=12,padx=12)
-
-        #checkbox=customtkinter.CTkCheckBox(master=frame, text="Remember?")
-        #checkbox.pack(pady=12,padx=12)
-
-        #implement results in a gid with labels on the left
 
         self.resultgrid=customtkinter.CTkFrame(self.frame)
         self.resultgrid.columnconfigure(0,weight=1)
@@ -90,10 +80,10 @@ class DiceGUI:
         self.root.mainloop()
 
     def rollDice(self):
-        # return [random.randint(1,d) for i in range(n)]
+        #this is based on: return [random.randint(1,d) for i in range(n)]
         self.resultArray=([random.randint(1,int(self.sides2.get())) for x in range(int(self.dice2.get()))])
         self.results.configure(text=(self.resultArray))
         self.resultSum.configure(text=(sum(self.resultArray)))
-        #messagebox.showinfo(message=self.thisRoll)
+
 
 DiceGUI()
